@@ -15,6 +15,10 @@ func (s *Subscriber[T]) Complete() {
 	s.isCompleted = true
 }
 
+func (s *Subscriber[T]) Error(err any) {
+	s.observer.error(err)
+}
+
 func NewSubscriber[T any](observer Observer[T]) Subscriber[T] {
 	s := Subscriber[T]{}
 	s.observer = observer
